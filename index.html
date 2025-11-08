@@ -88,9 +88,9 @@ button:hover {
   color: #f5d97a;
 }
 
-.download-btn {
+.download-btn, .share-btn {
   display: none;
-  margin-top: 20px;
+  margin: 10px;
   background-color: #f5d97a;
   color: #0b132b;
   border: none;
@@ -98,6 +98,10 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.download-btn:hover, .share-btn:hover {
+  background-color: #ffe9a8;
 }
 </style>
 </head>
@@ -130,6 +134,7 @@ button:hover {
 </div>
 
 <button class="download-btn" id="downloadBtn" onclick="downloadInvitation()">Download Invitation</button>
+<button class="share-btn" id="shareBtn" onclick="shareInvitation()">Share Invitation</button>
 
 <script>
 function generateInvitation() {
@@ -139,6 +144,7 @@ function generateInvitation() {
   const churchLocation = document.getElementById("churchLocation");
   const invitation = document.getElementById("invitationCard");
   const downloadBtn = document.getElementById("downloadBtn");
+  const shareBtn = document.getElementById("shareBtn");
 
   if (!name || !address) {
     alert("Please fill in both fields before generating the invitation.");
@@ -149,6 +155,7 @@ function generateInvitation() {
   churchLocation.innerText = address;
   invitation.style.display = "block";
   downloadBtn.style.display = "inline-block";
+  shareBtn.style.display = "inline-block";
   window.scrollTo({ top: invitation.offsetTop, behavior: "smooth" });
 }
 
@@ -161,5 +168,27 @@ function downloadInvitation() {
     link.click();
   });
 }
+
+function shareInvitation() {
+  const name = document.getElementById("guestName").value.trim();
+  const address = document.getElementById("churchAddress").value.trim();
+
+  const shareText = `🌟 You and your family are invited to the "International Service - Trumpets & Feasts 2025"! 🌟
+
+📅 Date: November 30, 2025
+🕙 Time: 10:00 AM
+📍 Location: ${address}
+
+We look forward to seeing you, ${name}!`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Trumpets & Feasts 2025 Invitation",
+      text: shareText,
+      url: window.location.href
+    }).catch((error) => console.log("Share failed:", error));
+  } else {
+    alert("Sharing is not supported on this device. You can copy and share the link manually.");
+  }
+}
 </script>
-</body>
