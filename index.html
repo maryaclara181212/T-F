@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Trombetas e Festas 2025</title>
 
-<!-- Biblioteca para gerar imagem -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
@@ -105,6 +104,16 @@ button:hover {
   color: #f5d97a;
   margin-bottom: 20px;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.lang-btn img {
+  width: 22px;
+  height: 15px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
 }
 .lang-btn:hover {
   background-color: #f5d97a;
@@ -116,8 +125,11 @@ button:hover {
 <body>
 <img src="https://raw.githubusercontent.com/maryaclara181212/convite-international-service/refs/heads/main/tef5.png" alt="Banner Trombetas e Festas" style="width:100%; height:auto; display:block; margin:auto;">
 
-<!-- Botão de idioma -->
-<button class="lang-btn" id="langBtn" onclick="toggleLanguage()">🌐 English</button>
+<!-- Botão de idioma com bandeira -->
+<button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
+  <img id="flagIcon" src="https://flagcdn.com/w20/us.png" alt="Flag">
+  English
+</button>
 
 <div class="card">
 <h1 id="title">Trombetas e Festas 2025</h1>
@@ -149,6 +161,7 @@ let currentLang = "pt";
 
 function toggleLanguage() {
   const langBtn = document.getElementById("langBtn");
+  const flagIcon = document.getElementById("flagIcon");
 
   if (currentLang === "pt") {
     // Mudar para inglês
@@ -162,12 +175,14 @@ function toggleLanguage() {
     document.getElementById("eventTitle").innerText = "Trumpets and Feasts 2025";
     document.getElementById("line2").innerText = "This will be a world alert event about the current events that precede the return of Jesus.";
     document.getElementById("dateLabel").innerText = "Date:";
+    document.getElementById("eventDate").innerText = "November 30, 2025";
     document.getElementById("timeLabel").innerText = "Time:";
     document.getElementById("line3").innerText = "We invite you to watch the event with us at:";
     document.getElementById("downloadBtn").innerText = "Download Invitation";
     document.getElementById("shareBtn").innerText = "Share Invitation";
 
-    langBtn.innerText = "🌐 Português";
+    flagIcon.src = "https://flagcdn.com/w20/br.png";
+    langBtn.innerHTML = `<img id="flagIcon" src="https://flagcdn.com/w20/br.png" alt="Flag"> Português`;
     currentLang = "en";
   } else {
     // Voltar para português
@@ -181,12 +196,13 @@ function toggleLanguage() {
     document.getElementById("eventTitle").innerText = "Trombetas e Festas 2025";
     document.getElementById("line2").innerText = "Será um evento de alerta para o mundo sobre os acontecimentos atuais que antecedem a volta de Jesus.";
     document.getElementById("dateLabel").innerText = "Data:";
+    document.getElementById("eventDate").innerText = "30 de Novembro de 2025";
     document.getElementById("timeLabel").innerText = "Horário:";
     document.getElementById("line3").innerText = "Convidamos vocês para assistirem ao evento conosco na:";
     document.getElementById("downloadBtn").innerText = "Baixar Convite";
     document.getElementById("shareBtn").innerText = "Compartilhar Convite";
 
-    langBtn.innerText = "🌐 English";
+    langBtn.innerHTML = `<img id="flagIcon" src="https://flagcdn.com/w20/us.png" alt="Flag"> English`;
     currentLang = "pt";
   }
 }
