@@ -1,5 +1,5 @@
-<DOCTYPE html>
-  <html lang="pt">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
 body {
   font-family: "Poppins", sans-serif;
   text-align: center;
-  background-color: #0b132b; /* azul-marinho escuro */
+  background-color: #0b132b;
   color: white;
   padding: 40px;
 }
@@ -98,38 +98,99 @@ button:hover {
   cursor: pointer;
   font-weight: bold;
 }
+
+.lang-btn {
+  background-color: #1c2541;
+  border: 2px solid #f5d97a;
+  color: #f5d97a;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.lang-btn:hover {
+  background-color: #f5d97a;
+  color: #0b132b;
+}
 </style>
 </head>
 
 <body>
 <img src="https://raw.githubusercontent.com/maryaclara181212/convite-international-service/refs/heads/main/tef5.png" alt="Banner Trombetas e Festas" style="width:100%; height:auto; display:block; margin:auto;">
 
-<div class="card">
-  <h1>Trombetas e Festas 2025</h1>
-  <p>Preencha os campos abaixo para gerar seu convite:</p>
+<!-- Botão de idioma -->
+<button class="lang-btn" id="langBtn" onclick="toggleLanguage()">🌐 English</button>
 
-  <input type="text" id="guestName" placeholder="Nome do convidado (ex: João e família)" />
-  <br />
-  <input type="text" id="churchAddress" placeholder="Endereço da igreja (ex: Rua das Flores, 123 - São Paulo)" />
-  <br />
-  <button onclick="generateInvitation()">Gerar Convite</button>
+<div class="card">
+<h1 id="title">Trombetas e Festas 2025</h1>
+<p id="subtitle">Preencha os campos abaixo para gerar seu convite:</p>
+
+<input type="text" id="guestName" placeholder="Nome do convidado (ex: João e família)" />
+<br />
+<input type="text" id="churchAddress" placeholder="Endereço da igreja (ex: Rua das Flores, 123 - São Paulo)" />
+<br />
+<button id="generateBtn" onclick="generateInvitation()">Gerar Convite</button>
 </div>
 
 <div class="invitation" id="invitationCard">
-  <h2 id="inviteeName"></h2>
-  <p>Você e sua família são nossos convidados de honra para o:</p>
-  <h3>Trombetas e Festas 2025</h3>
-  <p>Será um evento de alerta para o mundo sobre os acontecimentos atuais que antecedem a volta de Jesus.</p>
-  <p><strong>Data:</strong> 30 de Novembro de 2025</p>
-  <p><strong>Horário:</strong> 10:00 AM</p>
-  <p>Convidamos vocês para assistirem ao evento conosco na:</p>
-  <p id="churchLocation"></p>
+<h2 id="inviteeName"></h2>
+<p id="line1">Você e sua família são nossos convidados de honra para o:</p>
+<h3 id="eventTitle">Trombetas e Festas 2025</h3>
+<p id="line2">Será um evento de alerta para o mundo sobre os acontecimentos atuais que antecedem a volta de Jesus.</p>
+<p><strong id="dateLabel">Data:</strong> <span id="eventDate">30 de Novembro de 2025</span></p>
+<p><strong id="timeLabel">Horário:</strong> <span id="eventTime">10:00 AM</span></p>
+<p id="line3">Convidamos vocês para assistirem ao evento conosco na:</p>
+<p id="churchLocation"></p>
 </div>
 
 <button class="download-btn" id="downloadBtn" onclick="downloadInvitation()">Baixar Convite</button>
 <button class="share-btn" id="shareBtn" onclick="shareInvitation()">Compartilhar Convite</button>
 
 <script>
+let currentLang = "pt";
+
+function toggleLanguage() {
+  const langBtn = document.getElementById("langBtn");
+
+  if (currentLang === "pt") {
+    // Mudar para inglês
+    document.getElementById("title").innerText = "Trumpets and Feasts 2025";
+    document.getElementById("subtitle").innerText = "Fill in the fields below to generate your invitation:";
+    document.getElementById("guestName").placeholder = "Guest name (e.g., John and family)";
+    document.getElementById("churchAddress").placeholder = "Church address (e.g., 123 Flower Street - São Paulo)";
+    document.getElementById("generateBtn").innerText = "Generate Invitation";
+
+    document.getElementById("line1").innerText = "You and your family are our guests of honor for the:";
+    document.getElementById("eventTitle").innerText = "Trumpets and Feasts 2025";
+    document.getElementById("line2").innerText = "This will be a world alert event about the current events that precede the return of Jesus.";
+    document.getElementById("dateLabel").innerText = "Date:";
+    document.getElementById("timeLabel").innerText = "Time:";
+    document.getElementById("line3").innerText = "We invite you to watch the event with us at:";
+    document.getElementById("downloadBtn").innerText = "Download Invitation";
+    document.getElementById("shareBtn").innerText = "Share Invitation";
+
+    langBtn.innerText = "🌐 Português";
+    currentLang = "en";
+  } else {
+    // Voltar para português
+    document.getElementById("title").innerText = "Trombetas e Festas 2025";
+    document.getElementById("subtitle").innerText = "Preencha os campos abaixo para gerar seu convite:";
+    document.getElementById("guestName").placeholder = "Nome do convidado (ex: João e família)";
+    document.getElementById("churchAddress").placeholder = "Endereço da igreja (ex: Rua das Flores, 123 - São Paulo)";
+    document.getElementById("generateBtn").innerText = "Gerar Convite";
+
+    document.getElementById("line1").innerText = "Você e sua família são nossos convidados de honra para o:";
+    document.getElementById("eventTitle").innerText = "Trombetas e Festas 2025";
+    document.getElementById("line2").innerText = "Será um evento de alerta para o mundo sobre os acontecimentos atuais que antecedem a volta de Jesus.";
+    document.getElementById("dateLabel").innerText = "Data:";
+    document.getElementById("timeLabel").innerText = "Horário:";
+    document.getElementById("line3").innerText = "Convidamos vocês para assistirem ao evento conosco na:";
+    document.getElementById("downloadBtn").innerText = "Baixar Convite";
+    document.getElementById("shareBtn").innerText = "Compartilhar Convite";
+
+    langBtn.innerText = "🌐 English";
+    currentLang = "pt";
+  }
+}
+
 function generateInvitation() {
   const name = document.getElementById("guestName").value.trim();
   const address = document.getElementById("churchAddress").value.trim();
@@ -140,7 +201,7 @@ function generateInvitation() {
   const shareBtn = document.getElementById("shareBtn");
 
   if (!name || !address) {
-    alert("Por favor, preencha todos os campos antes de gerar o convite.");
+    alert(currentLang === "pt" ? "Por favor, preencha todos os campos antes de gerar o convite." : "Please fill in all fields before generating the invitation.");
     return;
   }
 
@@ -171,11 +232,11 @@ function shareInvitation() {
       if (navigator.share && navigator.canShare({ files: [file] })) {
         navigator.share({
           files: [file],
-          title: "Convite - Trombetas e Festas 2025",
-          text: "Veja o convite para o evento Trombetas e Festas 2025!",
+          title: currentLang === "pt" ? "Convite - Trombetas e Festas 2025" : "Invitation - Trumpets and Feasts 2025",
+          text: currentLang === "pt" ? "Veja o convite para o evento Trombetas e Festas 2025!" : "See the invitation for the Trumpets and Feasts 2025 event!",
         });
       } else {
-        alert("Compartilhamento direto não suportado neste dispositivo.");
+        alert(currentLang === "pt" ? "Compartilhamento direto não suportado neste dispositivo." : "Direct sharing not supported on this device.");
       }
     });
   });
